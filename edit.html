@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Evidence zaměstnanců">
@@ -25,14 +25,15 @@
             <label for="image">Fotka</label>
             <input type="file" name="image" id="image">
 
-            <h3>Jméno, příjmení</h3>
+
+            <h2>Jméno, příjmení</h2>
             <label for="firstname">Jméno</label>
             <input type="text" name="firstname" id="firstname">
 
             <label for="surname">Příjmení</label>
             <input type="text" name="surname" id="surname">
 
-            <h3>Funkce</h3>
+            <h2>Funkce</h2>
             <label for="add">Přidat funkci</label>
             <input type="radio" id="add" name="addordelete" value="add" checked>
 
@@ -49,7 +50,7 @@
             <label for="consultant">Poradce</label>
             <input type="checkbox" id="consultant" name="consultant" value="consultant" >
 
-            <h3>Kontaktní údaje</h3>
+            <h2>Kontaktní údaje</h2>
             <label for="phone">Telefon</label>
             <input type="tel" name="phone" id="phone">
 
@@ -59,11 +60,11 @@
             <label for="web">Web</label>
             <input type="url" name="web" id="web">
 
-            <h3>Doplňující informace</h3>
+            <h2>Doplňující informace</h2>
             <label for="description">Popis</label>
             <textarea name="description" id="description"></textarea>
 
-            <input type="submit" value="Aktualizovat">
+            <input id="save" type="submit" value="Aktualizovat">
             <a href="detail.html">Zpět na detail uživatele</a>
 
         </form>
