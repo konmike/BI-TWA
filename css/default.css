@@ -1,0 +1,153 @@
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+
+*{
+    transition: all 0.5s;
+}
+
+body{
+    max-width: 75em;
+    margin: 0 auto 1em;
+    padding: 0 0.625em;
+}
+
+h1{
+    margin-bottom: .3em;
+    font-family: Arial, sans-serif, Courier;
+}
+
+h2{
+    border-bottom: 1px solid rgba(0,0,0,.8);
+    font-family: Arial, sans-serif, Courier;
+}
+
+h3{
+    font-family: Arial, sans-serif, Courier;
+}
+
+address{
+    font-style: normal;
+}
+
+a[href^="mailto"]:after, a[href^="tel"]:after, a[href^="http"]:after {
+    font-family: 'FontAwesome', fantasy;
+    position: absolute;
+    margin-left: 0.25em;
+    font-style: normal;
+}
+
+a[href^="http"]:after{
+    content: '\f08e';
+}
+
+a[href^="mailto"]:after {
+    content: '\f003';
+}
+
+a[href^="tel"]:after {
+    content: '\f095';
+}
+
+nav{
+    display: inline-block;
+}
+
+ol{
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ol li{
+    border-bottom: 1px solid black;
+    display: inline;
+}
+
+nav ol li:last-child{
+    border-bottom: 0;
+}
+
+nav ol li:hover{
+    border-bottom: 1px dotted blue;
+}
+
+nav ol li:hover:last-child{
+    border-bottom: 0;
+}
+
+nav ol li a{
+    color: black;
+    text-decoration: none;
+}
+
+nav ol li:hover a{
+    color: blue;
+}
+
+article, form#edit{
+    margin: 0 2em 1em 2em;
+    padding: 1em 2em 1em 2em;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+article header{
+    display: block;
+    margin: 1em 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+article h2{
+    margin-top: 0;
+}
+
+dl dt{
+    font-weight: bold;
+}
+
+dl dd{
+    padding: .2em 0 .5em 0;
+}
+
+dl dd:last-child{
+    padding: .2em 0 0 0;
+}
+
+#current{
+    font-weight: bold;
+}
+
+.single{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.img_detail{
+    height: 200px;
+}
+
+p.form_description{
+    display: flex;
+}
+
+p.form_description > label{
+    padding-right: 1em;
+}
+
+article footer a, form#edit footer a, form#edit footer input{
+    display: inline-block;
+    background: rgba(0,0,0,.7);
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    padding: .2em .5em .2em .5em;
+    margin: .1em .3em 0 .3em;
+    font-size: 1.1em;
+    border: 0;
+    cursor: pointer;
+    font-family: Arial, sans-serif, Courier;
+}
+
+article footer a:hover, form#edit footer a:hover, form#edit footer input:hover{
+    background: rgba(0,0,0,1);
+    color: white;
+}

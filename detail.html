@@ -4,46 +4,66 @@
     <meta charset="UTF-8">
     <meta name="description" content="Evidence zaměstnanců">
     <meta name="author" content="Michal Konecny">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Detail zaměstnance - Jan Novák</title>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/default.css" type="text/css">
+    <link rel="stylesheet" href="css/print.css" type="text/css">
 </head>
 <body>
     <header>
+        <h1>Detail zaměstnance</h1>
         <nav>
             <ol>
                 <li><a href="index.html">Vyhledávání</a></li>
-                <li><a href="list.html">Výsledek vyhledávání</a></li>
-                <li>Detail zaměstnance</li>
+                <li><a href="list.html">Výsledek&nbsp;vyhledávání</a></li>
+                <li id="current">Detail&nbsp;zaměstnance</li>
             </ol>
         </nav>
     </header>
 
     <main>
-        <h1>Detail zaměstnance - Jan Novák</h1>
-        <img src="img/user1.jpg" alt="user1" height="100">
-        <dl>
-            <dt>Jméno,příjmení</dt>
-            <dd>Jan Novák</dd>
+        <article>
+            <header>
+                <h2>Jan Novák</h2>
+            </header>
 
-            <dt>Funkce</dt>
-            <dd>Student</dd>
+            <img src="img/user1.jpg" alt="Jan Novák" class="img_detail">
 
-            <dt>Telefon</dt>
-            <dd>+420111111111</dd>
+            <section>
+                <dl>
+                    <dt>Jméno, příjmení</dt>
+                    <dd>Jan Novák</dd>
 
-            <dt>Email</dt>
-            <dd><address><a href="mailto:jan.novak@fit.cvut.cz">jan.novak@fit.cvut.cz</a></address></dd>
+                    <dt>Funkce</dt>
+                    <dd>Ředitel</dd>
 
-            <dt>Webové stránky</dt>
-            <dd><a href="http://www.jannovak.cz">jannovak.cz</a></dd>
+                    <dt>Místnost</dt>
+                    <dd>č. 221</dd>
 
-            <dt>Doplňující informace</dt>
-            <dd>Něco o uživateli Jan Novák...</dd>
-        </dl>
+                    <dt>Telefon</dt>
+                    <dd><address><a href="tel: +420741258963">+420 741 258 963</a></address></dd>
+
+                    <dt>Email</dt>
+                    <dd><address><a href="mailto:jan.novak@fit.cvut.cz">jan.novak@fit.cvut.cz</a></address></dd>
+
+                    <dt>Webové stránky</dt>
+                    <dd><a href="http://www.jannovak.cz" target="_blank">www.jannovak.cz</a></dd>
+
+                    <dt>Doplňující informace</dt>
+                    <dd>Něco o uživateli Jan Novák...</dd>
+                </dl>
+            </section>
+
+            <footer class="single">
+                <a href="edit.html">Aktualizace údajů</a>
+            </footer>
+
+        </article>
+
     </main>
-
-    <footer>
-        <a href="edit.html">Aktualizace údajů</a>
-    </footer>
 
 </body>
 </html>

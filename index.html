@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="description" content="Evidence zaměstnanců">
     <meta name="author" content="Michal Konecny">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Evidence zaměstnanců</title>
 
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/default.css" type="text/css">
+    <link rel="stylesheet" href="css/print.css" type="text/css">
 </head>
 <body>
 
-    <main>
+    <header>
         <h1>Evidence zaměstnanců</h1>
-        <form action="list.html">
-            <label for="search">Hledané jméno</label>
-            <input type="search" id="search" name="search">
-            <button type="submit">Hledat</button>
+        <nav>
+            <ol>
+                <li id="current">Vyhledávání</li>
+            </ol>
+        </nav>
+    </header>
+
+    <main>
+        <form id="searchform" action="list.html">
+            <label for="search"></label>
+            <input type="search" id="search" name="search" placeholder="např. Jan Novák">
+            <button type="submit"></button>
         </form>
     </main>
 

@@ -4,71 +4,113 @@
     <meta charset="UTF-8">
     <meta name="description" content="Evidence zaměstnanců">
     <meta name="author" content="Michal Konecny">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Editace zaměstnance - Jan Novák</title>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/default.css" type="text/css">
+    <link rel="stylesheet" href="css/print.css" type="text/css">
 </head>
 <body>
     <header>
+        <h1>Aktualizace údajů</h1>
         <nav>
             <ol>
                 <li><a href="index.html">Vyhledávání</a></li>
-                <li><a href="list.html">Výsledek vyhledávání</a></li>
-                <li><a href="detail.html">Detail zaměstnance</a></li>
-                <li>Aktualizace údajů</li>
+                <li><a href="list.html">Výsledek&nbsp;vyhledávání</a></li>
+                <li><a href="detail.html">Detail&nbsp;zaměstnance</a></li>
+                <li id="current">Aktualizace&nbsp;údajů</li>
             </ol>
         </nav>
     </header>
 
     <main>
-        <h1>Aktualizace údajů - Jan Novák</h1>
+            <form id="edit" action="" method="post">
+                <h2>Jan Novák</h2>
+                <section>
+                    <p>
+                        <label for="image">Nahrát&nbsp;fotografii</label>
+                        <input type="file" name="image" id="image">
+                    </p>
+                </section>
 
-        <form action="" method="post">
-            <label for="image">Fotka</label>
-            <input type="file" name="image" id="image">
+                <section>
+                    <h3>Jméno, příjmení</h3>
+                    <p>
+                        <label for="firstname">Jméno</label>
+                        <input type="text" name="firstname" id="firstname">
+                    </p>
 
+                    <p>
+                        <label for="surname">Příjmení</label>
+                        <input type="text" name="surname" id="surname">
+                    </p>
+                </section>
 
-            <h2>Jméno, příjmení</h2>
-            <label for="firstname">Jméno</label>
-            <input type="text" name="firstname" id="firstname">
+                <section>
+                    <h3>Funkce</h3>
+                    <ul>
+                        <li>
+                            <label for="add">Přidat&nbsp;funkci</label>
+                            <input type="radio" id="add" name="addordelete" value="add" checked>
+                        </li>
 
-            <label for="surname">Příjmení</label>
-            <input type="text" name="surname" id="surname">
+                        <li>
+                            <label for="remove">Odebrat&nbsp;funkci</label>
+                            <input type="radio" id="remove" name="addordelete" value="remove">
+                        </li>
+                    </ul>
 
-            <h2>Funkce</h2>
-            <label for="add">Přidat funkci</label>
-            <input type="radio" id="add" name="addordelete" value="add" checked>
+                    <ul>
+                        <li>
+                            <label for="employee">Zaměstnanec</label>
+                            <input type="checkbox" id="employee" name="employee" value="employee" checked="checked">
+                        </li>
 
-            <label for="remove">Odebrat funkci</label>
-            <input type="radio" id="remove" name="addordelete" value="remove">
+                        <li>
+                            <label for="student">Student</label>
+                            <input type="checkbox" id="student" name="student" value="student" >
+                        </li>
 
+                        <li>
+                            <label for="consultant">Poradce</label>
+                            <input type="checkbox" id="consultant" name="consultant" value="consultant" >
+                        </li>
+                    </ul>
+                </section>
 
-            <label for="employee">Zaměstnanec</label>
-            <input type="checkbox" id="employee" name="employee" value="employee" checked="checked">
+                <section>
+                    <h3>Kontaktní údaje</h3>
+                    <p>
+                        <label for="phone">Telefon</label>
+                        <input type="tel" name="phone" id="phone">
+                    </p>
 
-            <label for="student">Student</label>
-            <input type="checkbox" id="student" name="student" value="student" >
+                    <p>
+                        <label for="mail">E-mail</label>
+                        <input type="email" name="mail" id="mail">
+                    </p>
 
-            <label for="consultant">Poradce</label>
-            <input type="checkbox" id="consultant" name="consultant" value="consultant" >
+                    <p>
+                        <label for="web">Web</label>
+                        <input type="url" name="web" id="web">
+                    </p>
+                </section>
 
-            <h2>Kontaktní údaje</h2>
-            <label for="phone">Telefon</label>
-            <input type="tel" name="phone" id="phone">
+                <section>
+                    <h3>Doplňující informace</h3>
+                    <p class="form_description">
+                        <label for="description">Popis</label>
+                        <textarea name="description" id="description"></textarea>
+                    </p>
+                </section>
 
-            <label for="mail">E-mail</label>
-            <input type="email" name="mail" id="mail">
-
-            <label for="web">Web</label>
-            <input type="url" name="web" id="web">
-
-            <h2>Doplňující informace</h2>
-            <label for="description">Popis</label>
-            <textarea name="description" id="description"></textarea>
-
-            <input id="save" type="submit" value="Aktualizovat">
-            <a href="detail.html">Zpět na detail uživatele</a>
-
-        </form>
-
+                <footer>
+                    <a href="detail.html">Zpět na detail uživatele</a>
+                    <input id="save" type="submit" value="Aktualizovat">
+                </footer>
+            </form>
     </main>
 
 </body>
