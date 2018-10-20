@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Evidence zaměstnanců">
+    <meta name="author" content="Michal Konecny">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title 'Evidence zaměstnanců'|title %}</title>
+
+    <link rel="stylesheet" href="../web/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../web/css/default.css" type="text/css">
+    <link rel="stylesheet" href="../web/css/print.css" type="text/css">
+</head>
+<body>
+
+<header>
+    {% block banner %}
+        <h1>Evidence zaměstnanců</h1>
+    {% endblock %}
+    <nav>
+        <ol>
+            {% block breadcrumbs %}
+                <li id="current">Vyhledávání</li>
+            {% endblock %}
+        </ol>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+</body>
+</html>

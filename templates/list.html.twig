@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Výsledek vyhledávání
+{% endblock %}
+
+{% block banner %}
+    <h1>Výsledek vyhledávání</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+            <li><a href="index.html.twig">Vyhledávání</a></li>
+            <li id="current">Výsledek&nbsp;vyhledávání</li>
+{% endblock %}
+
+{% block content %}
+
+    {% for employee in employees %}
+
+    <article>
+        <h2>{{ employee.name }} {{ employee.surname }}</h2>
+        <img src="../web/img/user_{{ employee.id }}.jpg" alt="{{ employee.name }} {{ employee.surname }}">
+
+        <section>
+            <dl>
+                <dt>Funkce</dt>
+                {% for function in employee.functions %}
+                <dd>{{ function }}</dd>
+                {%  endfor %}
+
+                <dt>Email</dt>
+                <dd>
+                    <address>
+                        <a href="mailto:{{ employee.email }}">{{ employee.email }}</a>
+                    </address>
+                </dd>
+
+                <dt>Místnost č.</dt>
+                <dd>{{ employee.room }}</dd>
+            </dl>
+        </section>
+
+        <footer>
+            <a href="?page=detail&id={{ employee.id }}">Detail&nbsp;zaměstnance</a>
+            <a href="?page=edit&id={{ employee.id }}">Aktualizace&nbsp;údajů</a>
+        </footer>
+    </article>
+    {% endfor %}
+{% endblock %}

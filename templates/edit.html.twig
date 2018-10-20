@@ -1,0 +1,105 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Editace - {{ employee.name }} {{ employee.surname }}
+{% endblock %}
+
+{% block banner %}
+    <h1>Editace</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="?">Vyhledávání</a></li>
+    <li><a href="?page=list">Výsledek&nbsp;vyhledávání</a></li>
+    <li><a href="?page=detail&id={{ employee.id }}">Detail&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</a></li>
+    <li id="current">Editace&nbsp;údajů</li>
+{% endblock %}
+
+{% block content %}
+            <form id="edit" action="" method="post">
+                <h2>{{ employee.name }} {{ employee.surname }}</h2>
+                <section>
+                    <img src="../web/img/user_{{ employee.id }}.jpg" alt="{{ employee.name }} {{ employee.surname }}">
+                    <p>
+                        <label for="image">Nahrát&nbsp;fotografii</label>
+                        <input type="file" name="image" id="image">
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Jméno, příjmení</h3>
+                    <p>
+                        <label for="firstname">Jméno</label>
+                        <input type="text" name="firstname" id="firstname" value="{{ employee.name }}">
+                    </p>
+
+                    <p>
+                        <label for="surname">Příjmení</label>
+                        <input type="text" name="surname" id="surname" value="{{ employee.surname }}">
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Funkce</h3>
+                    <ul>
+                        <li>
+                            <input type="radio" id="add" name="addordelete" value="add">
+                            <label for="add">Přidat&nbsp;funkci/e</label>
+
+                            <input type="text" id="addFun" name="addFunction" placeholder="např. Asistent, Manažer" >
+                        </li>
+
+                        <li>
+                            <input type="radio" id="remove" name="addordelete" value="remove" checked>
+                            <label for="remove">Odebrat&nbsp;funkci/e</label>
+                        </li>
+
+
+                    </ul>
+
+                    <ul>
+                        {% for function in employee.functions %}
+                        <li>
+                            <input type="checkbox" id="{{ function | lower }}" name="{{ function | lower }}">
+                            <label for="{{ function | lower }}">{{ function }}</label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Kontaktní údaje</h3>
+                    <p>
+                        <label for="room">Místnost č.</label>
+                        <input type="text" name="room" id="room" value="{{ employee.room }}">
+                    </p>
+                    <p>
+                        <label for="phone">Telefon</label>
+                        <input type="tel" name="phone" id="phone" value="{{ employee.phone }}">
+                    </p>
+
+                    <p>
+                        <label for="mail">E-mail</label>
+                        <input type="email" name="mail" id="mail" value="{{ employee.email }}">
+                    </p>
+
+                    <p>
+                        <label for="web">Web</label>
+                        <input type="url" name="web" id="web" value="{{ employee.web }}">
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Doplňující informace</h3>
+                    <p class="form_description">
+                        <label for="description">Popis</label>
+                        <textarea name="description" id="description">{{ employee.otherInfo }}</textarea>
+                    </p>
+                </section>
+
+                <footer>
+                    <a href="?page=detail&id={{ employee.id }}">Zpět</a>
+                    <input id="save" type="submit" value="Aktualizovat">
+                </footer>
+            </form>
+{% endblock %}

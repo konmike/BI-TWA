@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+        <form id="searchform" action="?filter=search">
+            <label for="search"></label>
+            <input type="search" id="search" name="search" placeholder="např. Jan Novák">
+            <button type="submit"></button>
+        </form>
+{% endblock %}

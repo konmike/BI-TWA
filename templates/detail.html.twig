@@ -1,0 +1,71 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Detail zaměstnance - {{ employee.name }} {{ employee.surname }}
+{% endblock %}
+
+{% block banner %}
+    <h1>Detail zaměstnance</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+                <li><a href="?">Vyhledávání</a></li>
+                <li><a href="?page=list">Výsledek&nbsp;vyhledávání</a></li>
+                <li id="current">Detail&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</li>
+{% endblock %}
+
+{% block content %}
+        <article>
+            <header>
+                <h2>{{ employee.name }} {{ employee.surname }}</h2>
+            </header>
+
+            <img src="../web/img/user_{{ employee.id }}.jpg" alt="{{ employee.name }} {{ employee.surname }}" class="img_detail">
+
+            <section>
+                <dl>
+                    <dt>Jméno, příjmení</dt>
+                    <dd>{{ employee.name }} {{ employee.surname }}</dd>
+
+                    <dt>Funkce</dt>
+                    {% for function in employee.functions %}
+                        <dd>{{ function }}</dd>
+                    {%  endfor %}
+
+                    <dt>Místnost č.</dt>
+                    <dd>{{ employee.room }}</dd>
+
+                    <dt>Telefon</dt>
+                    <dd>
+                        <address>
+                            <a href="tel: {{ employee.phone }}">{{ employee.phone }}</a>
+                        </address>
+                    </dd>
+
+                    <dt>Email</dt>
+                    <dd>
+                        <address>
+                            <a href="mailto:{{ employee.email }}">{{ employee.email }}</a>
+                        </address>
+                    </dd>
+
+                    <dt>Webové stránky</dt>
+                    <dd>
+                        {% if employee.web | length > 0 %}
+                        <a href="http://{{ employee.web }}">{{ employee.web }}</a>
+                        {% endif %}
+                    </dd>
+
+                    <dt>Doplňující informace</dt>
+                    <dd>
+                        <p>{{ employee.otherInfo }}</p>
+                    </dd>
+                </dl>
+            </section>
+
+            <footer class="single">
+                <a href="?page=edit&id={{ employee.id }}">Aktualizace údajů</a>
+            </footer>
+
+        </article>
+{% endblock %}
