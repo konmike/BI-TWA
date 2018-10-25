@@ -9,8 +9,8 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-                <li><a href="?">Vyhledávání</a></li>
-                <li><a href="?page=list">Výsledek&nbsp;vyhledávání</a></li>
+                <li><a href="{{ path('index') }}">Vyhledávání</a></li>
+                <li><a href="{{ path('app_employee_list') }}">Výsledek&nbsp;vyhledávání</a></li>
                 <li id="current">Detail&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</li>
 {% endblock %}
 
@@ -20,7 +20,7 @@
                 <h2>{{ employee.name }} {{ employee.surname }}</h2>
             </header>
 
-            <img src="../web/img/user_{{ employee.id }}.jpg" alt="{{ employee.name }} {{ employee.surname }}" class="img_detail">
+            <img src="/img/user_{{ employee.id }}.jpg" alt="{{ employee.name }} {{ employee.surname }}" class="img_detail">
 
             <section>
                 <dl>
@@ -64,7 +64,7 @@
             </section>
 
             <footer class="single">
-                <a href="?page=edit&id={{ employee.id }}">Aktualizace údajů</a>
+                <a href="{{ path('employee_edit',{"id":employee.id}) }}">Aktualizace údajů</a>
             </footer>
 
         </article>

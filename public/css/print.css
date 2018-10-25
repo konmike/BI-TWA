@@ -1,0 +1,30 @@
+@media print {
+
+    header{
+        margin-top: 0;
+    }
+
+    h1{
+        margin-top: 0;
+    }
+
+    form#searchform button{
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+
+    nav ol li{
+        border-bottom: 1px solid black;
+    }
+
+    nav ol li a{
+        color: black;
+    }
+
+    article footer a, form#edit footer a, form#edit footer input{
+        color: black;
+        text-decoration: underline;
+        background: rgb(255,255,255);
+    }
+
+}

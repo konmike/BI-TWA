@@ -1,0 +1,177 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 1em 0;
+    padding-bottom: .5em;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+}
+
+header nav ol li::after{
+    content: ' \00bb';
+}
+
+header nav ol li:last-child::after{
+    content: '';
+}
+
+@media only screen and (max-width: 410px) {
+    header {
+        justify-content: center;
+    }
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+form#searchform{
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0;
+    width: 70%;
+    max-width: 70%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 767px) {
+    form#searchform {
+        width: 80%;
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 536px) {
+    form#searchform {
+        max-width: 90%;
+        width: 90%;
+    }
+}
+
+input#search{
+    opacity: 0.7;
+    text-indent: 0.1em;
+    border: 0;
+    width: 100%;
+    font-size: 1.2em;
+    max-width: 100%;
+    outline: black;
+    padding: .5em;
+}
+
+button{
+    background-image: url("../img/searchIcon.png");
+    background-size: 60% 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    height: 40px;
+    min-width: 40px;
+    padding: 1px 0;
+    border: 0;
+    cursor: pointer;
+}
+
+article img{
+    height: 90px;
+    float: left;
+}
+
+article section{
+    float: right;
+    margin-bottom: 2em;
+    padding-right: 2em;
+}
+
+article footer{
+    clear: both;
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-top: 1px solid black;
+}
+
+dl{
+    margin-top: 0;
+    padding-left: 1em;
+}
+
+
+@media only screen and (min-width:371px) and (max-width: 617px) {
+    article img{
+        float: none;
+    }
+
+    article section{
+        float: none;
+    }
+
+    dl{
+        padding-left: 0;
+        padding-top: 1em;
+    }
+}
+
+@media only screen and (max-width: 370px){
+    article img{
+        float: none;
+    }
+
+    article section{
+        float: none;
+    }
+
+    dl{
+        padding-left: 0;
+        padding-top: 1em;
+    }
+
+    article footer {
+        justify-content: center;
+    }
+}
+
+form#edit section{
+    float: none;
+    clear: both;
+}
+
+form#edit section img{
+    width: 20em;
+}
+
+form#edit section:focus{
+    background: rgba(0,0,0,0.5);
+}
+
+form#edit section ul li{
+    list-style-type: none;
+}
+
+#addFun{
+    margin-top: .5em;
+    opacity: 0;
+}
+
+input[type=radio]#add:checked ~ #addFun{
+    display: block;
+    opacity: 1;
+    margin-bottom: 1em;
+    margin-left: 1.5em;
+}
+
+
+form#edit footer{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    padding-top: 1em;
+    margin-top: 2em;
+}
