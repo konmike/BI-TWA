@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\Database;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeController extends AbstractController
 {
@@ -44,7 +45,7 @@ class EmployeeController extends AbstractController
     public function detailAction(int $id){
         $employee = $this->database->getEmployee($id);
         if( $employee === null){
-            return $this->render("404.html.twig");
+            return $this->render( '404.html.twig', [], ( new Response() )->setStatusCode( 404 ) );
         }
 
         return $this->render("detail.html.twig", ["employee"=>$employee]);
@@ -58,7 +59,7 @@ class EmployeeController extends AbstractController
     public function editAction(int $id){
         $employee = $this->database->getEmployee($id);
         if( $employee === null){
-            return $this->render("404.html.twig");
+            return $this->render( '404.html.twig', [], ( new Response() )->setStatusCode( 404 ) );
         }
 
         return $this->render("edit.html.twig", ["employee"=>$employee]);
