@@ -47,6 +47,10 @@ a[href^="tel"]:after {
     content: '\f095';
 }
 
+a[href^="tel"]:before {
+    content: '+420';
+}
+
 nav{
     display: inline-block;
 }

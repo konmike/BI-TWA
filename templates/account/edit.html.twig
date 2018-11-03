@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Editace účtů uživatele - {{ employee.name }} {{ employee.surname }}
+{% endblock %}
+
+{% block banner %}
+    <h1>Editace účtů</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('index') }}">Vyhledávání</a></li>
+    <li><a href="{{ path('employee_list') }}">Výsledek&nbsp;vyhledávání</a></li>
+    <li><a href="{{ path('employee_detail',{"id":employee.id}) }}">Detail&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</a></li>
+    <li><a href="{{ path('account_detail',{"id":employee.id}) }}">Účty&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</a></li>
+    <li id="current">Editace&nbsp;účtů</li>
+{% endblock %}
+
+{% block content %}
+            <form id="edit" action="" method="post">
+                <h2>{{ employee.name }} {{ employee.surname }}</h2>
+
+                <section>
+                    <h3>Účty</h3>
+                    {% for account in accounts %}
+                    <h4>#{{ account.id }}</h4>
+                    <p>
+                        <label for="password">Heslo</label>
+                        <input type="password" name="password" id="password" value="{{ account.password }}">
+                    </p>
+                    <p>
+                        <label for="validity">Platnost</label>
+                        <input type="date" name="validity" id="validity" value="{{ account.validity|date("Y-m-d") }}">
+                    </p>
+                    {% endfor %}
+                </section>
+
+                <footer>
+                    <a href="{{ path('account_detail',{"id":employee.id}) }}">Zpět</a>
+                    <input id="save" type="submit" value="Aktualizovat">
+                </footer>
+            </form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Účty zaměstnance - {{ employee.name }} {{ employee.surname }}
+{% endblock %}
+
+{% block banner %}
+    <h1>Účty zaměstnance</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+                <li><a href="{{ path('index') }}">Vyhledávání</a></li>
+                <li><a href="{{ path('employee_list') }}">Výsledek&nbsp;vyhledávání</a></li>
+                <li><a href="{{ path('employee_detail',{"id":employee.id}) }}">Detail&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</a></li>
+                <li id="current">Účty&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</li>
+{% endblock %}
+
+{% block content %}
+        <article>
+            <header>
+                <h2>{{ employee.name }} {{ employee.surname }}</h2>
+            </header>
+            <section>
+                <dl>
+                    <dt>Účty</dt>
+                    {% for account in accounts %}
+                        <dd>
+                            #{{ account.id }}
+                            Expirace - {{ account.validity|date("d.m.Y") }}
+                        </dd>
+                    {%  endfor %}
+                </dl>
+            </section>
+
+            <footer class="single">
+                <a href="{{ path('employee_detail',{"id":employee.id}) }}">Zpět na detail</a>
+                <a href="{{ path('account_edit',{"id":employee.id}) }}">Aktualizace účtů</a>
+            </footer>
+
+        </article>
+{% endblock %}

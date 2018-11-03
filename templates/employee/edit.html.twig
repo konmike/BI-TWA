@@ -10,7 +10,7 @@
 
 {% block breadcrumbs %}
     <li><a href="{{ path('index') }}">Vyhledávání</a></li>
-    <li><a href="{{ path('app_employee_list') }}">Výsledek&nbsp;vyhledávání</a></li>
+    <li><a href="{{ path('employee_list') }}">Výsledek&nbsp;vyhledávání</a></li>
     <li><a href="{{ path('employee_detail',{"id":employee.id}) }}">Detail&nbsp;zaměstnance&nbsp;-&nbsp;{{ employee.name }}&nbsp;{{ employee.surname }}</a></li>
     <li id="current">Editace&nbsp;údajů</li>
 {% endblock %}
@@ -58,10 +58,10 @@
                     </ul>
 
                     <ul>
-                        {% for function in employee.functions %}
+                        {% for function in functions %}
                         <li>
-                            <input type="checkbox" id="{{ function | lower }}" name="{{ function | lower }}">
-                            <label for="{{ function | lower }}">{{ function }}</label>
+                            <input type="checkbox" id="{{ function.name | lower }}" name="{{ function.name | lower }}">
+                            <label for="{{ function.name | lower }}">{{ function.name }}</label>
                         </li>
                         {% endfor %}
                     </ul>

@@ -24,8 +24,12 @@
         <section>
             <dl>
                 <dt>Funkce</dt>
-                {% for function in employee.functions %}
-                <dd>{{ function }}</dd>
+                {% for id in employee.functionsId %}
+                    {% for role in functions %}
+                        {% if role.id == id %}
+                            <dd>{{ role.name }}</dd>
+                        {% endif %}
+                    {%  endfor %}
                 {%  endfor %}
 
                 <dt>Email</dt>
@@ -41,7 +45,7 @@
         </section>
 
         <footer>
-            <a href="{{ path('employee_detail',{"id":employee.id}) }}">Detail&nbsp;zaměstnance</a>
+            <a href="{{ path('employee_detail',{"id":employee.id}) }}">Detaily</a>
             <a href="{{ path('employee_edit',{"id":employee.id}) }}">Aktualizace&nbsp;údajů</a>
         </footer>
     </article>
