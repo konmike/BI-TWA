@@ -24,8 +24,8 @@ class AccountController extends AbstractController
             return $this->render( '404.html.twig', [], ( new Response() )->setStatusCode( 404 ) );
         }
 
-        foreach ($employee->getFunctionsId() as $functionId){
-            $accounts [] = $this->getRepository(Account::class)->find($functionId);
+        foreach ($employee->getAccountsId() as $accountId){
+            $accounts [] = $this->getRepository(Account::class)->find($accountId);
         }
 
         return $this->render("account/detail.html.twig", [
@@ -45,8 +45,8 @@ class AccountController extends AbstractController
             return $this->render( '404.html.twig', [], ( new Response() )->setStatusCode( 404 ) );
         }
 
-        foreach ($employee->getFunctionsId() as $functionId){
-            $accounts [] = $this->getRepository(Account::class)->find($functionId);
+        foreach ($employee->getAccountsId() as $accountId){
+            $accounts [] = $this->getRepository(Account::class)->find($accountId);
         }
 
         return $this->render("account/edit.html.twig", [

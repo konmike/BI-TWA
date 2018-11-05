@@ -162,13 +162,13 @@ class Employee
         return $this;
     }
 
-    public function getAccountId()
+    public function getAccountsId()
     {
         return $this->accountsId;
     }
 
 
-    public function setAccountId($accountsId): self
+    public function setAccountsId($accountsId): self
     {
         $this->accountsId = $accountsId;
 

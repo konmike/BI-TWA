@@ -26,6 +26,11 @@ class Account
      */
     private $validity;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $employee_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,4 +59,20 @@ class Account
 
         return $this;
     }
+
+
+    public function getEmployeeId()
+    {
+        return $this->employee_id;
+    }
+
+
+    public function setEmployeeId($employee_id): self
+    {
+        $this->employee_id = $employee_id;
+
+        return $this;
+    }
+
+
 }
