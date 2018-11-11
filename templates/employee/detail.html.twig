@@ -28,9 +28,7 @@
                     <dd>{{ employee.name }} {{ employee.surname }}</dd>
 
                     <dt>Funkce</dt>
-                    {% for function in functions %}
-                        <dd>{{ function.name }}</dd>
-                    {%  endfor %}
+                    <dd>{{ employee.printFunctions() }}</dd>
 
                     <dt>Místnost č.</dt>
                     <dd>{{ employee.room }}</dd>
@@ -64,7 +62,7 @@
             </section>
 
             <footer class="single">
-                <a href="{{ path('account_detail',{"id":employee.id}) }}">Účty</a>
+                <a href="{{ path('account_detail',{"employee_id":employee.id}) }}">Účty</a>
                 <a href="{{ path('employee_edit',{"id":employee.id}) }}">Aktualizace údajů</a>
             </footer>
 

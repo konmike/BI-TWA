@@ -24,13 +24,7 @@
         <section>
             <dl>
                 <dt>Funkce</dt>
-                {% for id in employee.functionsId %}
-                    {% for role in functions %}
-                        {% if role.id == id %}
-                            <dd>{{ role.name }}</dd>
-                        {% endif %}
-                    {%  endfor %}
-                {%  endfor %}
+                <dd>{{ employee.printFunctions() }}</dd>
 
                 <dt>Email</dt>
                 <dd>

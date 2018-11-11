@@ -27,6 +27,7 @@
                         <dd>
                             #{{ account.id }}
                             Expirace - {{ account.validity|date("d.m.Y") }}
+                            <a href="{{ path('account_edit',{"account_id": account.id }) }}" class="edit">Edit</a>
                         </dd>
                     {%  endfor %}
                 </dl>
@@ -34,7 +35,7 @@
 
             <footer class="single">
                 <a href="{{ path('employee_detail',{"id":employee.id}) }}">Zpět na detail</a>
-                <a href="{{ path('account_edit',{"id":employee.id}) }}">Aktualizace účtů</a>
+                <a href="{{ path('account_create') }}">Přidat účet</a>
             </footer>
 
         </article>

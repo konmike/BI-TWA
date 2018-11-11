@@ -2,7 +2,12 @@
 
 namespace App\Entity;
 
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EmployeeRepository")
@@ -17,22 +22,21 @@ class Employee
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="simple_array")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="employees")
      */
-    private $functionsId;
+    private $functions;
 
     /**
-     * @ORM\Column(type="simple_array")
-     */
-    private $accountsId;
-
-    /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $surname;
 
@@ -43,6 +47,8 @@ class Employee
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -53,13 +59,27 @@ class Employee
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Length(max=100)
+     * @Assert\Url()
      */
     private $web;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(max=512)
      */
     private $otherInfo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Account", mappedBy="employee")
+     */
+    private $accounts;
+
+    public function __construct()
+    {
+        $this->functions = new ArrayCollection();
+        $this->accounts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,27 +170,68 @@ class Employee
         return $this;
     }
 
-    public function getFunctionsId()
+    /**
+     * @return Collection|Role[]
+     */
+    public function getFunctions(): Collection
     {
-        return $this->functionsId;
+        return $this->functions;
     }
 
-    public function setFunctionsId($functionsId): self
+    public function addFunction(Role $function): self
     {
-        $this->functionsId = $functionsId;
+        if (!$this->functions->contains($function)) {
+            $this->functions[] = $function;
+        }
 
         return $this;
     }
 
-    public function getAccountsId()
+    public function removeFunction(Role $function): self
     {
-        return $this->accountsId;
+        if ($this->functions->contains($function)) {
+            $this->functions->removeElement($function);
+        }
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function printFunctions(){
+        return implode(", ",array_map(function($val){
+            return $val->getName();
+        },$this->functions->getValues()));
+    }
 
-    public function setAccountsId($accountsId): self
+    /**
+     * @return Collection|Account[]
+     */
+    public function getAccounts(): Collection
     {
-        $this->accountsId = $accountsId;
+        return $this->accounts;
+    }
+
+    public function addAccount(Account $account): self
+    {
+        if (!$this->accounts->contains($account)) {
+            $this->accounts[] = $account;
+            $account->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccount(Account $account): self
+    {
+        if ($this->accounts->contains($account)) {
+            $this->accounts->removeElement($account);
+
+            if ($account->getEmployee() === $this) {
+                $account->setEmployee(null);
+            }
+        }
 
         return $this;
     }

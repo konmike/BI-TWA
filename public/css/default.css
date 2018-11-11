@@ -51,6 +51,8 @@ a[href^="tel"]:before {
     content: '+420';
 }
 
+
+
 nav{
     display: inline-block;
 }
@@ -115,6 +117,30 @@ dl dd{
 
 dl dd:last-child{
     padding: .2em 0 0 0;
+}
+
+dl dd a.edit{
+    color: rgba(0,0,0,.8);
+    font-weight: bold;
+    font-size: 1.1em;
+    font-family: Arial, sans-serif, Courier;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: .5em;
+}
+
+dl dd a.edit:hover {
+    color: rgba(0,0,0,1);
+}
+
+dl dd a.edit:hover:after {
+    color: red;
+}
+
+dl dd a.edit:after{
+    font-family: FontAwesome;
+    content: '\f044';
+    padding-left: .2em;
 }
 
 #current{
