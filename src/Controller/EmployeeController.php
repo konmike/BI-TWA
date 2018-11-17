@@ -8,6 +8,8 @@ use App\Entity\Account;
 
 
 use App\Form\EmployeeType;
+use App\Functionality\EmployeeFunctionality;
+use App\Repository\EmployeeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,28 +20,46 @@ use Doctrine\DBAL\Types\TextType;
 class EmployeeController extends AbstractController
 {
     /**
+     * @var EmployeeRepository
+     */
+    protected $employeeRepository;
+
+    /** @var EmployeeFunctionality */
+    protected $employeeFunctionality;
+
+    /**
+     * EmployeeController constructor.
+     * @param EmployeeFunctionality $employeeFunctionality
+     */
+    public function __construct(EmployeeFunctionality $employeeFunctionality)
+    {
+        $this->employeeFunctionality = $employeeFunctionality;
+    }
+
+    /**
      * @Route("/list", name="employee_list")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(){
-        $employees = $this->getRepository(Employee::class)->findAll();
-        $functions = $this->getRepository(Role::class)->findAll();
+        $this->employeeRepository = $this->getDoctrine()->getRepository(Employee::class);
 
         return $this->render('employee/list.html.twig', [
-            "employees" => $employees,
-            "functions" => $functions,
+            "employees" => $this->employeeRepository->findAll(),
         ]);
 
     }
 
     /**
      * @Route("/detail/{id}", name="employee_detail", requirements={"id":"\d+"})
-     * @param Employee $employee
+     * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function detailAction(Employee $employee){
-        if (empty($employee)){
-                return $this->render( '404.html.twig', [], ( new Response() )->setStatusCode( 404 ) );
+    public function detailAction(int $id){
+        $this->employeeRepository = $this->getDoctrine()->getRepository(Employee::class);
+        $employee = $this->employeeRepository->find($id);
+
+        if( $employee === null){
+            throw $this->createNotFoundException();
         }
 
         return $this->render("employee/detail.html.twig", [
@@ -48,14 +68,18 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="employee_create", defaults={"id": null})
      * @Route("/edit/{id}", name="employee_edit", requirements={"id":"\d+"})
-     * @param int|null $id
+     * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id, Request $request){
+    public function editAction(int $id, Request $request){
+        $this->employeeRepository = $this->getDoctrine()->getRepository(Employee::class);
 
-        $employee = $id ? $this->getRepository(Employee::class)->find($id) : new Employee();
+        $employee = $this->employeeRepository->find($id);
+
+        if( $employee === null){
+            throw $this->createNotFoundException();
+        }
 
         $form = $this->createForm(EmployeeType::class, $employee, [
         ]);
@@ -63,9 +87,7 @@ class EmployeeController extends AbstractController
 		$form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($employee);
-            $em->flush();
+            $this->employeeFunctionality->save($employee);
 
             $this->addFlash('success', 'Údaje byly uloženy.');
             return $this->redirectToRoute('employee_detail', [
@@ -73,20 +95,43 @@ class EmployeeController extends AbstractController
             ]);
         }
 
-        if($id)
-            return $this->render("employee/edit.html.twig", [
-                'form' => $form->createView(),
-                'employee' => $this->getRepository(Employee::class)->find($id),
-            ]);
-        else {
-            return $this->render('employee/create.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
+        return $this->render("employee/edit.html.twig", [
+            'form' => $form->createView(),
+            'employee' => $employee,
+        ]);
+
     }
 
-    protected function getRepository($class) {
-        return $this->getDoctrine()->getRepository($class);
+    /**
+     * @Route("/create", name="employee_create", defaults={"id": null})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     **/
+    public function createAction(Request $request){
+        $employee = new Employee();
+
+        if( $employee === null){
+            throw $this->createNotFoundException();
+        }
+        $form = $this->createForm(EmployeeType::class, $employee, [
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->employeeFunctionality->save($employee);
+
+            $this->addFlash('success', 'Údaje byly uloženy.');
+            return $this->redirectToRoute('employee_detail', [
+                'id' => $employee->getId(),
+            ]);
+        }
+
+        return $this->render("employee/create.html.twig", [
+            'form' => $form->createView(),
+            'employee' => $employee,
+        ]);
+
     }
 
 }
