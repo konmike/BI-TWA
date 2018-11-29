@@ -25,6 +25,7 @@
     <h3>Účet #{{ account.id }}</h3>
 
         <section>
+            {{ form_row(form.email) }}
             {{ form_row(form.password) }}
             {{ form_row(form.validity) }}
             {{ form_row(form.employee) }}

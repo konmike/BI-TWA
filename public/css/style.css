@@ -27,6 +27,7 @@ main{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-bottom: 5em;
 }
 
 form#searchform{
@@ -174,4 +175,9 @@ form#edit footer{
     border-top: 1px solid black;
     padding-top: 1em;
     margin-top: 2em;
+}
+
+form#edit footer.single{
+    display: flex;
+    justify-content: flex-end;
 }

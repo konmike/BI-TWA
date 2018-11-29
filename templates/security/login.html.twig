@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Přihlášení!
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('index') }}">Vyhledávání</a></li>
+    <li id="current">Přihlášení</li>
+{% endblock %}
+
+
+{% block content %}
+<form id="edit" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <h2 class="h3 mb-3 font-weight-normal">Přihlášení</h2>
+    <section>
+    <p>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+    </p>
+    </section>
+
+    <section>
+    <p>
+        <label for="inputPassword" class="sr-only">Heslo</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Heslo" required>
+    </p>
+    </section>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <footer class="single">
+    <input class="btn btn-lg btn-primary" type="submit" value="Přihlásit">
+    </footer>
+</form>
+{% endblock %}

@@ -1,3 +1,2 @@
-#app_lucky_number:
-#  path: /lucky/number
-#  controller: App\Controller\EmployeeController::number
+app_logout:
+  path: /logout

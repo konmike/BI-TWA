@@ -185,3 +185,56 @@ article footer a:hover, form#edit footer a:hover, form#edit footer input:hover{
 textarea{
     width: 100%;
 }
+
+body > footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 5em;
+    padding-top: 0.7em;
+    border-top: 1px solid rgba(0,0,0,.5);
+    background-color: rgba(63, 63, 63, 1);
+}
+
+body > footer a{
+    color: white;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif, Courier
+}
+
+body > footer a:hover{
+    color: red;
+}
+
+body > footer#autheticated{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 5em;
+    padding-top: 0.7em;
+    border-top: 1px solid rgba(0,0,0,.5);
+    background-color: rgba(63, 63, 63, 1);
+}
+
+body > footer#autheticated > dl{
+    display: flex;
+    margin-top: 0;
+    padding-left: 1em;
+    color: white;
+}
+
+body > footer#autheticated > a{
+    padding-right: 1em;
+}
+
+body > footer#autheticated > dl > dd{
+    padding: 0;
+    margin-left: .5em;
+    margin-right: .5em;
+}

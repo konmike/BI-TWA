@@ -32,5 +32,39 @@
     {% endblock %}
 </main>
 
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <footer id="autheticated">
+        <dl>
+            <dt>Email:</dt>
+            <dd>{{ app.user.email }}</dd>
+            <dt>Platnost:</dt>
+            <dd>
+                {% if app.user.validity != null %}
+                    {{ app.user.validity|date("d.m.Y") }}
+                {% else %}
+                    Permanentní účet
+                {% endif %}
+            </dd>
+            <dt>Role:</dt>
+            <dd>
+                {% for role in app.user.roles %}
+                    {% if role == 'ROLE_ADMIN' %}
+                        Admin
+                    {% else %}
+                        Uživatel
+                    {% endif %}
+                {% endfor %}
+            </dd>
+        </dl>
+        <a href="{{ path('app_logout') }}">Odhlásit se</a>
+    </footer>
+    {% else %}
+    <footer>
+        <a href="{{ path('app_login') }}">Přihlášení</a>
+    </footer>
+    {% endif %}
+
+
 </body>
 </html>

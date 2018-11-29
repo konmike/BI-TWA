@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authorization\Voter;
 
 class AccountController extends AbstractController
 {
@@ -50,6 +51,10 @@ class AccountController extends AbstractController
         $accounts = $this->getRepository(Employee::class)->find($employee_id)->getAccounts();
         $employee = $this->getRepository(Employee::class)->find($employee_id);
 
+        if(!$this->isGranted('view')){
+            return $this->render( '403.html.twig', [], ( new Response() )->setStatusCode( 403 ) );
+        }
+
         return $this->render("account/detail.html.twig", [
             "employee" => $employee,
             "accounts" => $accounts,
@@ -72,10 +77,18 @@ class AccountController extends AbstractController
             $employee = $this->getRepository(Employee::class)->find($account->getEmployeeId());
         }
 
+        if(!$this->isGranted('edit')){
+            return $this->render( '403.html.twig', [], ( new Response() )->setStatusCode( 403 ) );
+        }
+
         $form = $this->createForm(AccountType::class, $account, []);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $account = $form->getData();
+
+            $account->setPassword(password_hash($form["password"]->getData(), PASSWORD_BCRYPT));
+
             $this->accountFunctionality->save($account);
 
             $this->addFlash('success', 'Údaje byly uloženy.');
@@ -99,10 +112,17 @@ class AccountController extends AbstractController
     public function createAction(Request $request){
         $account = new Account();
 
+        if(!$this->isGranted('create')){
+            return $this->render( '403.html.twig', [], ( new Response() )->setStatusCode( 403 ) );
+        }
+
         $form = $this->createForm(AccountType::class, $account, []);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $account = $form->getData();
+
+            $account->setPassword(password_hash($form["password"]->getData(), PASSWORD_BCRYPT));
             $this->accountFunctionality->save($account);
 
             $this->addFlash('success', 'Údaje byly uloženy.');
